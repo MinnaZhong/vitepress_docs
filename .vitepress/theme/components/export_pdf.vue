@@ -1,0 +1,106 @@
+<script setup>
+import { useData, useRoute } from 'vitepress';
+import {  onMounted, ref, watch } from 'vue';
+import qs from "query-string";
+import { LoaderCircle, FileDown } from "lucide-vue-next";
+ 
+// 控制按钮显示
+const showButton = ref(false);
+const route = useRoute()
+const data = useData()
+
+const isEnglish = ref(false)
+
+watch(() => data.lang, (data) => {
+  isEnglish.value = (data.value === 'en-US')
+}, {
+  deep: true,
+  immediate: true
+})
+
+const dwLoading = ref(false)
+
+
+onMounted(() => {
+  watch(() => route.path, () => {
+    const params = qs.parse(window.location.search)
+    if ("export" in params && params.export === '1') {
+      document.querySelector(".VPSidebar").remove()
+      document.querySelector(".VPLocalNav").remove()
+      document.querySelector(".VPNav").remove()
+      document.querySelector(".VPDoc>.container>.aside").remove()
+      document.querySelector(".VPDocFooter").remove()
+      
+      let VPContent =  document.querySelector(".VPContent")
+      VPContent.style.padding = "0px"
+      
+      return
+    }
+  }, { deep: true , immediate: true});
+
+  // 只在首页和文档页面显示按钮
+  if (window.location.pathname !== '/' && !window.location.pathname.startsWith('/')) {
+    showButton.value = false;
+  } else {
+    showButton.value = true;
+  }
+
+ 
+});
+
+// 下载 PDF 的函数
+const downloadPDF = async () => {
+  
+  dwLoading.value = true
+  try {
+    let name = route.data.title.trim().split(" ").join("_")
+
+     // 设置请求参数
+    const payload = {
+      url: window.location.origin+window.location.pathname+"?export=1",
+      name: `${name}.pdf`,
+    };
+    const response = await fetch('http://192.168.1.113:3000/generate-pdf', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+
+    if (!response.ok) {
+        throw new Error('无法生成 PDF');
+    }
+
+    // 获取 PDF 数据为 Blob
+    const blob = await response.blob();
+
+    // 创建一个下载链接并触发下载
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = payload.name
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url); // 释放 Blob URL
+    dwLoading.value = false
+
+  } catch (error) {
+    console.error('下载 PDF 失败:', error);
+    dwLoading.value = false
+  }
+  return
+};
+
+
+</script>
+<template>
+  <!-- 根据 showButton 的值来控制按钮是否显示 -->
+  <button v-if="showButton" @click="downloadPDF" class="export-pdf-button" :disabled="dwLoading">
+    <LoaderCircle class="spin" v-if="dwLoading" />
+    <FileDown size="18" v-else />
+    {{isEnglish ? "Export PDF" :"导出PDF"}}
+  </button>
+</template>
+ 

@@ -1,0 +1,17 @@
+{
+  "name": "export_pdf",
+  "version": "1.0.0",
+  "main": "export_pdf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "puppeteer": "^23.9.0",
+    "query-string": "^9.1.1"
+  }
+}
