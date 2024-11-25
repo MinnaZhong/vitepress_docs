@@ -7,7 +7,7 @@ import {
 } from "http";
 
 import {
-    exec
+    spawn
 } from "child_process";
 
 
@@ -27,19 +27,22 @@ webhooks.on('push', async (event) => {
     // 在这里可以添加你对 push 事件的具体处理逻辑，比如自动部署、更新文档等
     // 在这里执行autobuild.sh脚本
     try {
-        console.log("执行autobuild.sh...");
+        // console.log("执行autobuild.sh...");
 
-        // 使用child_process模块来执行shell脚本
-        await exec('bash ./autobuild.sh', (err, stdout, stderr) => {
-            if (err) {
-                console.error('执行autobuild.sh时出错：', err);
-                return;
-            }
-            console.log('执行成功，输出：', stdout);
+        // // 使用child_process模块来执行shell脚本
+        // await exec('bash ./autobuild.sh', (err, stdout, stderr) => {
+        //     if (err) {
+        //         console.error('执行autobuild.sh时出错：', err);
+        //         return;
+        //     }
+        //     console.log('执行成功，输出：', stdout);
+        // });
+
+        // console.log("执行autobuild.sh完成!");
+
+        run_cmd('sh', ['./autobuild.sh'], function (text) {
+            console.log(text)
         });
-
-        console.log("执行autobuild.sh完成!");
-
     } catch (error) {
         console.error('执行autobuild.sh时出现异常：', error);
     }
@@ -65,3 +68,16 @@ createServer(async (req, res) => {
     res.writeHead(404);
     res.end();
 }).listen(3020);
+
+
+function run_cmd(cmd, args, callback) {
+    var child = spawn(cmd, args);
+    var resp = "";
+
+    child.stdout.on('data', function (buffer) {
+        console.log(buffer.toString());
+    });
+    child.stdout.on('end', function () {
+        callback("run_cmd end")
+    });
+}
