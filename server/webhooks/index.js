@@ -6,6 +6,10 @@ import {
     createServer
 } from "http";
 
+import {
+    exec
+} from "child_process";
+
 
 const webhooks = new Webhooks({
     secret: "uf@docs_2024_10?",
@@ -25,9 +29,6 @@ webhooks.on('push', async (event) => {
     // 在这里执行autobuild.sh脚本
     try {
         // 使用child_process模块来执行shell脚本
-        const {
-            exec
-        } = require('child_process');
         await exec('bash autobuild.sh', (err, stdout, stderr) => {
             if (err) {
                 console.error('执行autobuild.sh时出错：', err);
