@@ -1,51 +1,32 @@
-const http = require("http");
+import {
+    Webhooks,
+    createNodeMiddleware
+} from "@octokit/webhooks";
+import http from "http";
 
-const resolvePost = (req) =>
-    new Promise((resolve) => {
-        let chunk = "";
-        req.on("data", (data) => {
-            chunk += data;
-        });
-        req.on("end", () => {
-            resolve(JSON.parse(chunk));
-        });
-    });
 
-function run_cmd(cmd, args, callback) {
-    var spawn = require('child_process').spawn;
-    var child = spawn(cmd, args);
-    var resp = "";
+const webhooks = new Webhooks({
+    secret: "uf@docs_2024_10?",
+});
 
-    child.stdout.on('data', function (buffer) {
-        resp += buffer.toString();
-    });
-    child.stdout.on('end', function () {
-        callback(resp)
-    });
-}
 
-http
-    .createServer(async (req, res) => {
-        console.log("receive request");
-        console.log(req.url);
-        if (req.method === "POST" && req.url === "/") {
-            console.log("if true");
-            const data = await resolvePost(req);
+webhooks.on('push', async (event) => {
+    const {
+        ref,
+        repository,
+        head_commit
+    } = event.payload;
+    console.log(`Received a push event on ${ref} in ${repository.name}`);
+    console.log('Head commit:', head_commit);
+    // 在这里可以添加你对 push 事件的具体处理逻辑，比如自动部署、更新文档等
+});
 
-            let giturl = data.repository.html_url;
+webhooks.onAny(({
+    id,
+    name,
+    payload
+}) => {
+    console.log(name, "event received");
+});
 
-            console.log('next callfile', giturl)
-
-            //callfile.execFile("autobuild.sh", ["giturl", giturl]);
-
-            run_cmd('sh', ['./autobuild.sh'], function (text) {
-                console.log(text)
-            });
-
-            res.end("ok");
-        }
-        console.log("if else");
-    })
-    .listen(3020, () => {
-        console.log("server is ready");
-    });
+http.createServer(createNodeMiddleware(webhooks)).listen(3020);
