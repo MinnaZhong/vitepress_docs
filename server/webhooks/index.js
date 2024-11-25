@@ -29,4 +29,15 @@ webhooks.onAny(({
     console.log(name, "event received");
 });
 
-http.createServer(createNodeMiddleware(webhooks)).listen(3020);
+const middleware = createNodeMiddleware(webhooks, {
+    path: "/webhooks"
+});
+
+createServer(async (req, res) => {
+    console.log('createServer==>');
+
+    // `middleware` returns `false` when `req` is unhandled (beyond `/webhooks`)
+    if (await middleware(req, res)) return;
+    res.writeHead(404);
+    res.end();
+}).listen(3020);
