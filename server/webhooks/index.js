@@ -9,7 +9,7 @@ const webhooks = new Webhooks({
     secret: "uf@docs_2024_10?",
 });
 
-
+// 监听提交事件
 webhooks.on('push', async (event) => {
     const {
         ref,
