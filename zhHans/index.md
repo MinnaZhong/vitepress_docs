@@ -2,7 +2,7 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
 hero:
-  name: "UFactory 文档 V1.0.3"
+  name: "UFactory 文档 V1.0.4"
   tagline: "我们可以帮您找到什么？"
   actions:
     - theme: brand
