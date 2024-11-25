@@ -21,6 +21,23 @@ webhooks.on('push', async (event) => {
     console.log(`Received a push event on ${ref} in ${repository.name}`);
     console.log('Head commit:', head_commit);
     // 在这里可以添加你对 push 事件的具体处理逻辑，比如自动部署、更新文档等
+
+    // 在这里执行autobuild.sh脚本
+    try {
+        // 使用child_process模块来执行shell脚本
+        const {
+            exec
+        } = require('child_process');
+        await exec('bash autobuild.sh', (err, stdout, stderr) => {
+            if (err) {
+                console.error('执行autobuild.sh时出错：', err);
+                return;
+            }
+            console.log('autobuild.sh执行成功，输出：', stdout);
+        });
+    } catch (error) {
+        console.error('执行autobuild.sh时出现异常：', error);
+    }
 });
 
 // 监听所有的

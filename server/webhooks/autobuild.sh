@@ -1,7 +1,6 @@
 
 # 前端在服务器的git地址
-# WEB_PATH='/home/vitepress_docs/'
-WEB_PATH="D:/code/ufactory-doc/"
+WEB_PATH='/home/vitepress_docs/'
 
 WEB_USER='root'
 WEB_USERGROUP='root'
