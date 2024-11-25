@@ -2,7 +2,9 @@ import {
     Webhooks,
     createNodeMiddleware
 } from "@octokit/webhooks";
-import http from "http";
+import {
+    createServer
+} from "http";
 
 
 const webhooks = new Webhooks({
