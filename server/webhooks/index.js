@@ -30,26 +30,29 @@ webhooks.on('push', async (event) => {
         console.log("执行autobuild.sh...");
 
         // 使用child_process模块来执行shell脚本
-        await exec('bash autobuild.sh', (err, stdout, stderr) => {
+        await exec('bash ./autobuild.sh', (err, stdout, stderr) => {
             if (err) {
                 console.error('执行autobuild.sh时出错：', err);
                 return;
             }
             console.log('执行成功，输出：', stdout);
         });
+
+        console.log("执行autobuild.sh完成!");
+
     } catch (error) {
         console.error('执行autobuild.sh时出现异常：', error);
     }
 });
 
-// 监听所有的
-webhooks.onAny(({
-    id,
-    name,
-    payload
-}) => {
-    console.log(name, "event received");
-});
+// // 监听所有的
+// webhooks.onAny(({
+//     id,
+//     name,
+//     payload
+// }) => {
+//     console.log(name, "event received");
+// });
 
 const middleware = createNodeMiddleware(webhooks, {
     path: "/webhooks"
