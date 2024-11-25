@@ -23,6 +23,7 @@ webhooks.on('push', async (event) => {
     // 在这里可以添加你对 push 事件的具体处理逻辑，比如自动部署、更新文档等
 });
 
+// 监听所有的
 webhooks.onAny(({
     id,
     name,
@@ -37,7 +38,6 @@ const middleware = createNodeMiddleware(webhooks, {
 
 createServer(async (req, res) => {
     console.log('createServer==>');
-
     // `middleware` returns `false` when `req` is unhandled (beyond `/webhooks`)
     if (await middleware(req, res)) return;
     res.writeHead(404);
