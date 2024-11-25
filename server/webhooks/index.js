@@ -33,7 +33,7 @@ webhooks.on('push', async (event) => {
                 console.error('执行autobuild.sh时出错：', err);
                 return;
             }
-            console.log('autobuild.sh执行成功，输出：', stdout);
+            console.log('执行成功，输出：', stdout);
         });
     } catch (error) {
         console.error('执行autobuild.sh时出现异常：', error);
