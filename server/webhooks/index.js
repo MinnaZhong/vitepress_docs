@@ -27,6 +27,8 @@ webhooks.on('push', async (event) => {
     // 在这里可以添加你对 push 事件的具体处理逻辑，比如自动部署、更新文档等
     // 在这里执行autobuild.sh脚本
     try {
+        console.log("执行autobuild.sh...");
+
         // 使用child_process模块来执行shell脚本
         await exec('bash autobuild.sh', (err, stdout, stderr) => {
             if (err) {
