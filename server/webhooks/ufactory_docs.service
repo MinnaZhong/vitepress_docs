@@ -1,0 +1,12 @@
+[Unit]
+Description=UFactory DOCS Webhooks Service
+After=network.target
+
+[Service]
+ExecStart=/home/vitepress_docs/server/ufactory_docs.sh
+Restart=always
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
