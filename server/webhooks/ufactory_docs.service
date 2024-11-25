@@ -3,7 +3,7 @@ Description=UFactory DOCS Webhooks Service
 After=network.target
 
 [Service]
-ExecStart=/home/vitepress_docs/server/ufactory_docs.sh
+ExecStart=/home/vitepress_docs/server/start_webhooks.sh
 Restart=always
 User=root
 Group=root
