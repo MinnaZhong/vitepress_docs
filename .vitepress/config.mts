@@ -40,7 +40,7 @@ const defaultLocale: string = 'en';
 const supportLocales: string[] = [defaultLocale, 'zhHans'];
 
 const commonSidebarConfig: VitePressSidebarOptions = {
-  debugPrint: true,
+  debugPrint: false,
   manualSortFileNameByPriority: ['introduction.md', 'guide', 'advanced-usage'],
   collapsed: false,
   capitalizeFirst: true,
@@ -65,7 +65,7 @@ const vitePressSidebarConfig = [
 
 const vitePressI18nConfig: any = {
   locales: supportLocales,
-  debugPrint: true,
+  debugPrint: false,
   rootLocale: defaultLocale,
   searchProvider: 'local',
   description: {
