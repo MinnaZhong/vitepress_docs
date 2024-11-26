@@ -1,6 +1,8 @@
 node_modules/
 docs/
 pdf/
+.vitepress/dist/
+.vitepress/cache/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
