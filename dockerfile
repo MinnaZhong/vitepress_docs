@@ -5,7 +5,7 @@ FROM timbru31/node-chrome
 WORKDIR /app
 
 # 更新软件包列表
-# RUN apt-get update && apt-get install -y fonts-noto-cjk 
+RUN apt-get update && apt-get install -y fonts-noto-cjk 
 
 # 复制项目的package.json和package-lock.json文件到工作目录
 COPY package*.json ./
@@ -21,9 +21,6 @@ RUN npm install -g pm2
 # 复制项目的所有源代码到工作目录
 COPY . .
 
-# vitepress-export-pdf 依赖安装
-RUN npm run export:install
-
 # 暴露服务器监听的端口，这里是3000端口
 # webhooks
 EXPOSE 3020 
@@ -34,9 +31,15 @@ EXPOSE 3040
 
 RUN npm run docs:build
 
-# 导出pdf文件
-# RUN npm run export:en 
-# RUN npm run export:cn
+RUN npm run export:api:install
+RUN npm run webhooks:install
+# vitepress-export-pdf 依赖安装
+RUN npm run export:install
 
-# 定义容器启动时要执行的命令，启动Express服务器
+
+# 导出pdf文件
+RUN npm run export:en 
+RUN npm run export:cn
+
+# 定义容器启动时要执行的命令，启动Express服务器 & npm run export:api & npm run webhooks
 CMD ["bash", "-c", "npm run docs:preview & npm run export:api & npm run webhooks"]
