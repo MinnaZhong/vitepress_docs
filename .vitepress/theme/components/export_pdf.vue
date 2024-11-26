@@ -1,6 +1,6 @@
 <script setup>
 import { useData, useRoute } from 'vitepress';
-import {  onMounted, ref, watch } from 'vue';
+import {  onMounted, ref, watch, reactive} from 'vue';
 import qs from "query-string";
 import { LoaderCircle, FileDown } from "lucide-vue-next";
 import {Modal, Button} from "ant-design-vue"
@@ -23,6 +23,7 @@ watch(() => data.lang, (data) => {
 })
 
 const dwLoading = ref(false)
+const allDwLoading = ref(false)
 
 
 onMounted(() => {
@@ -98,22 +99,24 @@ const downloadPDF = async () => {
 };
 
 const downloadAllPDF = async () => {
-  dwLoading.value = true
+  allDwLoading.value = true
   try {
-    const response = await fetch(API_DRAMA_URL+'/ufactory_docs.pdf')
+    const file_name = `ufactory_docs_${isEnglish?"en":"cn"}.pdf`
+    const response = await fetch(API_DRAMA_URL+`/`+file_name)
     const blob = await response.blob()
     const url = window.URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = 'ufactory_docs.pdf'
+    a.download = file_name
     document.body.appendChild(a)
     a.click()
     a.remove()
     window.URL.revokeObjectURL(url) // 释放 Blob URL
-    dwLoading.value = false
+    allDwLoading.value = false
   }
   catch (error) {
     console.error('下载 PDF 失败:', error);
+    allDwLoading.value = false
   }
 }
 
@@ -124,30 +127,32 @@ function onOpenModal() {
 
 </script>
 <template>
-  <!-- 根据 showButton 的值来控制按钮是否显示 -->
-  <button v-if="showButton" @click="onOpenModal" class="export-pdf-button" :disabled="dwLoading">
-    <LoaderCircle class="spin" v-if="dwLoading" />
-    <FileDown size="18" v-else />
-    {{isEnglish ? "Export PDF" :"导出PDF"}}
-  </button>
   
-  <Modal v-model:open="openModal" width="350px">
-
-    <div class="export-modal">
-      {{ !isEnglish ? "请选择导出的PDF文件" : "Please select the PDF file to export" }}
-    </div>
-
-    <template #footer>
-      <div class="export-button">
-        <Button @click="downloadAllPDF">
-          {{isEnglish ? "All Page" : "全部页面"}}
-        </Button>
-        <Button @click="downloadPDF">
-          {{isEnglish ? "Current Page" : "当前页面"}}
-        </Button>
+  <div>
+    <!-- 根据 showButton 的值来控制按钮是否显示 -->
+    <button v-if="showButton" @click="onOpenModal" class="export-pdf-button" :disabled="dwLoading || allDwLoading">
+      <LoaderCircle class="spin" v-if="dwLoading || allDwLoading" />
+      <FileDown size="18" v-else />
+      {{isEnglish ? "Export PDF" :"导出PDF"}}
+    </button>
+    
+    <Modal :open.sync="openModal" width="350px">
+      <div class="export-modal">
+        {{ !isEnglish ? "请选择导出的PDF文件" : "Please select the PDF file to export" }}
       </div>
-    </template>
-  </Modal>
+
+      <template #footer>
+        <div class="export-button">
+          <Button @click="downloadAllPDF" :loading="dwLoading">
+            {{isEnglish ? "All Page" : "全部页面"}}
+          </Button>
+          <Button @click="downloadPDF" :loading="allDwLoading">
+            {{isEnglish ? "Current Page" : "当前页面"}}
+          </Button>
+        </div>
+      </template>
+    </Modal>
+  </div>
 </template>
  
 <style scoped>

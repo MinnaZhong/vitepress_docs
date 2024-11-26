@@ -25,9 +25,13 @@ app.post("/", (req, res) => {
 })
 
 // 设置http://192.168.1.1:3030/ufactory_docs.pdf 可以下载该文件
-app.get('/ufactory_docs.pdf', (req, res) => {
-    const file_path = path.join(__dirname, '../../ufactory_docs.pdf');
-    // 读取文件并返回
+app.get('/ufactory_docs_en.pdf', (req, res) => {
+    const file_path = path.join(__dirname, '../../pdf/ufactory_docs_en.pdf');
+    res.sendFile(file_path);
+});
+
+app.get('/ufactory_docs_cn.pdf', (req, res) => {
+    const file_path = path.join(__dirname, '../../pdf/ufactory_docs_cn.pdf');
     res.sendFile(file_path);
 });
 

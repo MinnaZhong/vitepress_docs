@@ -4,18 +4,21 @@
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview --port 3040",
     "webhooks": "cd ./server/webhooks && npm install && node ./index.js",
-    "export_api": "cd ./server/export_pdf && npm install && node ./index.js"
+    "export:api": "cd ./server/export_pdf && npm install && node ./index.js",
+    "export:install": "cd ./server/vitepress-export-pdf && npm install",
+    "export:cn": "press-export-pdf export / -c ./.vitepress/vitepress-pdf.config_cn.ts",
+    "export:en": "press-export-pdf export / -c ./.vitepress/vitepress-pdf.config_en.ts"
   },
   "devDependencies": {
     "vitepress": "^1.5.0",
-    "vitepress-export-pdf": "^1.0.0",
-    "vitepress-i18n": "^1.3.0"
+    "vitepress-export-pdf": "file:./server/vitepress-export-pdf",
+    "vitepress-i18n": "^1.3.0",
+    "vitepress-sidebar": "^1.29.0"
   },
   "dependencies": {
     "@octokit/webhooks": "^13.4.1",
     "ant-design-vue": "4.x",
     "lucide-vue-next": "^0.460.0",
-    "query-string": "^9.1.1",
-    "vitepress-sidebar": "^1.29.0"
+    "query-string": "^9.1.1"
   }
 }
