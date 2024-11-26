@@ -1,0 +1,8 @@
+node_modules/
+docs/
+pdf/
+server/export_pdf/node_modules/
+server/webhooks/node_modules/
+server/vitepress-export-pdf/node_modules/
+.vitepress/dist/
+.vitepress/cache/
