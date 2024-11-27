@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "UFactory Docs v1.0.123s"
+  name: "UFactory Docs v1.0.124"
   tagline: "What can we help you find?"
   # tagline: My great project tagline
   actions:
