@@ -1,83 +1,72 @@
+import express from "express";
 import {
     Webhooks,
     createNodeMiddleware
 } from "@octokit/webhooks";
 import {
-    createServer
-} from "http";
-
-import {
     spawn
 } from "child_process";
+const cors = require('cors'); // 引入cors中间件
 
+// Initialize Express application
+const app = express();
 
+app.use(cors())
+
+// Initialize the Octokit Webhooks instance with the secret key
 const webhooks = new Webhooks({
-    secret: "uf@docs_2024_10?",
+    secret: "uf@docs_2024_10?", // Your webhook secret
 });
 
-// 监听提交事件
-webhooks.on('push', async (event) => {
+// Define the push event handler (similar to your original logic)
+webhooks.on("push", async (event) => {
     const {
         ref,
         repository,
         head_commit
     } = event.payload;
     console.log(`Received a push event on ${ref} in ${repository.name}`);
-    // console.log('Head commit:', head_commit);
-    // 在这里可以添加你对 push 事件的具体处理逻辑，比如自动部署、更新文档等
-    // 在这里执行autobuild.sh脚本
+
     try {
-        // console.log("执行autobuild.sh...");
-
-        // // 使用child_process模块来执行shell脚本
-        // await exec('bash ./autobuild.sh', (err, stdout, stderr) => {
-        //     if (err) {
-        //         console.error('执行autobuild.sh时出错：', err);
-        //         return;
-        //     }
-        //     console.log('执行成功，输出：', stdout);
-        // });
-
-        // console.log("执行autobuild.sh完成!");
-
-        run_cmd('sh', ['./autobuild.sh'], function (text) {
-            console.log(text)
+        // Run the shell command (e.g., autobuild.sh script)
+        run_cmd("sh", ["./autobuild.sh"], function (text) {
+            console.log(text);
         });
     } catch (error) {
-        console.error('执行autobuild.sh时出现异常：', error);
+        console.error("Error while executing autobuild.sh:", error);
     }
 });
 
-// // 监听所有的
-// webhooks.onAny(({
-//     id,
-//     name,
-//     payload
-// }) => {
-//     console.log(name, "event received");
-// });
+// Middleware to handle webhook events
+const webhookMiddleware = createNodeMiddleware(webhooks);
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
 
-const middleware = createNodeMiddleware(webhooks, {
-    path: "/webhooks"
+// Use the webhook middleware in Express
+app.use(webhookMiddleware);
+
+// Default route (404 for any unhandled routes)
+app.use((req, res) => {
+    res.status(404).send("Not Found");
 });
 
-createServer(async (req, res) => {
-    console.log('createServer==>');
-    // `middleware` returns `false` when `req` is unhandled (beyond `/webhooks`)
-    if (await middleware(req, res)) return;
-    res.writeHead(404);
-    res.end();
-}).listen(3020);
+// Start the Express server
+const PORT = process.env.PORT || 3020;
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});
 
-
+// Function to run shell commands (similar to the original logic)
 function run_cmd(cmd, args, callback) {
-    var child = spawn(cmd, args);
-    var resp = "";
-
-    child.stdout.on('data', function (buffer) {
+    const child = spawn(cmd, args);
+    child.stdout.on("data", (buffer) => {
         console.log(buffer.toString());
     });
-    child.stdout.on('end', function () {
-        callback("run_cmd end")
+    child.stdout.on("end", () => {
+        callback("run_cmd end");
+    });
+    child.on("error", (err) => {
+        console.error("Error running command:", err);
     });
 }
