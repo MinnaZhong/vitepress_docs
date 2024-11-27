@@ -6,7 +6,7 @@ import {
 import {
     spawn
 } from "child_process";
-const cors = require('cors'); // 引入cors中间件
+import cors from "cors";
 
 // Initialize Express application
 const app = express();
