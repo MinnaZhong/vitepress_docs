@@ -6,7 +6,7 @@ import { LoaderCircle, FileDown } from "lucide-vue-next";
 import {Modal, Button} from "ant-design-vue"
 
 
-const API_DRAMA_URL = "http://127.0.0.1:3030";
+const API_DRAMA_URL = "http://docs.api.ufactory.cc";
 
 // 控制按钮显示
 const showButton = ref(false);
@@ -128,7 +128,7 @@ function onOpenModal() {
 </script>
 <template>
   
-  <div>
+  <div class="export-btn">
     <!-- 根据 showButton 的值来控制按钮是否显示 -->
     <button v-if="showButton" @click="onOpenModal" class="export-pdf-button" :disabled="dwLoading || allDwLoading">
       <LoaderCircle class="spin" v-if="dwLoading || allDwLoading" />
@@ -136,17 +136,16 @@ function onOpenModal() {
       {{isEnglish ? "Export PDF" :"导出PDF"}}
     </button>
     
-    <Modal :open.sync="openModal" width="350px">
+    <Modal v-model:open="openModal" width="350px">
       <div class="export-modal">
         {{ !isEnglish ? "请选择导出的PDF文件" : "Please select the PDF file to export" }}
       </div>
-
       <template #footer>
         <div class="export-button">
-          <Button @click="downloadAllPDF" :loading="dwLoading">
+          <Button @click="downloadAllPDF" :loading="allDwLoading">
             {{isEnglish ? "All Page" : "全部页面"}}
           </Button>
-          <Button @click="downloadPDF" :loading="allDwLoading">
+          <Button @click="downloadPDF" :loading="dwLoading">
             {{isEnglish ? "Current Page" : "当前页面"}}
           </Button>
         </div>

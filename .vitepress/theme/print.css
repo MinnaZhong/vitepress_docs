@@ -1,0 +1,9 @@
+@media print {
+
+    .export-btn,
+    .VPNav,
+    .VPLocalNav,
+    .VPDocFooter {
+        display: none !important;
+    }
+}

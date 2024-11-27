@@ -29,8 +29,6 @@ const routeOrder = [
   ...links,
 ]
 
-console.log('routeOrder==>', routeOrder);
-
 
 const headerTemplate = `<div style="margin-top: -0.4cm; height: 70%; width: 100%; display: flex; justify-content: center; align-items: center; color: lightgray; border-bottom: solid lightgray 1px; font-size: 10px;">
   <span class="title"></span>

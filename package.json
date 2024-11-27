@@ -8,11 +8,12 @@
     "export:api": "cd ./server/export_pdf && npm install && node ./index.js",
     "export:api:install": "cd './server/export_pdf' && npm install",
     "export:install": "cd './server/vitepress-export-pdf' && npm install",
-    "export:cn": "node ./server/vitepress-export-pdf/bin/press-export-pdf.mjs export / -c ./.vitepress/vitepress-pdf.config_cn.ts",
+    "export:cn": "press-export-pdf export / -c ./.vitepress/vitepress-pdf.config_cn.ts",
     "export:en": "press-export-pdf export / -c ./.vitepress/vitepress-pdf.config_en.ts"
   },
   "devDependencies": {
     "vitepress": "^1.5.0",
+    "vitepress-export-pdf": "^1.0.0",
     "vitepress-i18n": "^1.3.0",
     "vitepress-sidebar": "^1.29.0"
   },

@@ -29,8 +29,6 @@ const routeOrder = [
   ...links,
 ]
 
-console.log('routeOrder==>', routeOrder);
-
 
 const headerTemplate = `<div style="margin-top: -0.4cm; height: 70%; width: 100%; display: flex; justify-content: center; align-items: center; color: lightgray; border-bottom: solid lightgray 1px; font-size: 10px;">
   <span class="title"></span>
@@ -40,9 +38,13 @@ const footerTemplate = `<div style="margin-bottom: -0.4cm; height: 70%; width: 1
   <span style="margin-left: 15px;" class="url"></span>
 </div>`
 
+
 const configs = defineUserConfig({
   outFile: 'ufactory_docs_cn.pdf',
   outDir: 'pdf',
+  puppeteerLaunchOptions: {
+    args: ['--no-sandbox']
+  },
   routePatterns: ['!/server/**/**.*', '!/en/index.*', '!/**/index.*', '!/en/**'],
   pdfOptions: {
     format: 'A4',

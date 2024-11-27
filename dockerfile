@@ -4,6 +4,14 @@ FROM timbru31/node-chrome
 # 设置工作目录
 WORKDIR /app
 
+# # 创建用户和组，并设置uid和gid为1000
+# RUN useradd -u 1001 -g root -m -d /app/home/ -s /bin/bash uf
+
+# # 设置uf用户对/app/home目录及其子目录和文件可读可写的权限
+# RUN chown -R uf:root /app/home && chmod -R u+rwX,g+rwX,o+rX /app/home
+
+# RUN su uf
+
 # 更新软件包列表
 RUN apt-get update && apt-get install -y fonts-noto-cjk 
 
@@ -31,10 +39,9 @@ EXPOSE 3040
 
 RUN npm run docs:build
 
-RUN npm run export:api:install
-RUN npm run webhooks:install
-# vitepress-export-pdf 依赖安装
-RUN npm run export:install
+# RUN npm run export:api:install
+# RUN npm run webhooks:install
+# RUN npm run export:install
 
 
 # 导出pdf文件

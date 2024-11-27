@@ -4,6 +4,7 @@ import { inBrowser, useData, type Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import ExportPDF from './components/export_pdf.vue';
 import './style.css'
+import './print.css'
 
 export default {
   extends: DefaultTheme,
