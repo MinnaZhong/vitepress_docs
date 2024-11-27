@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "UFactory Docs v1.0.124"
-  tagline: "What can we help you find?"
+  tagline: "What can we help you find???"
   # tagline: My great project tagline
   actions:
     - theme: brand
