@@ -41,6 +41,9 @@ const footerTemplate = `<div style="margin-bottom: -0.4cm; height: 70%; width: 1
 const configs = defineUserConfig({
   outFile: 'ufactory_docs_en.pdf',
   outDir: 'pdf',
+  puppeteerLaunchOptions: {
+    args: ['--no-sandbox']
+  },
   routePatterns: ['!/server/**/**.*', '!/en/index.*', '!/**/index.*', '!/zhHans/**'],
   pdfOptions: {
     format: 'A4',
