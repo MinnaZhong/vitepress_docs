@@ -31,7 +31,7 @@ log_with_time "Current directory: $(pwd)"
 
 # 更新代码
 log_with_time "Pulling source code..."
-git fetch --all && git reset --hard origin/$BRANCH && git pull
+git pull
 if [ $? -ne 0 ]; then
     log_with_time "Git operation failed. Exiting..."
     exit 1
