@@ -20,7 +20,7 @@ log_with_time() {
     echo "${timestamp} - ${message}" | tee -a $LOG_FILE
 }
 
-log_with_time "[===================== Auto Update v1.0.0===========================]"
+log_with_time "[===================== Auto Update v1.0.0 ===========================]"
 
 # 开始部署流程
 log_with_time "Start deployment..."
@@ -34,7 +34,7 @@ log_with_time "Pulling source code..."
 git pull
 if [ $? -ne 0 ]; then
     log_with_time "Git operation failed. Exiting..."
-    exit 1
+    # exit 1
 fi
 
 # 安装依赖
@@ -67,12 +67,12 @@ fi
 
 
 # 打包PDF文件
-log_with_time "Packaging PDF..."
-npm run export:cn && npm run export:en
-if [ $? -ne 0 ]; then
-    log_with_time "PDF packaging failed. Exiting..."
-    exit 1
-fi
+# log_with_time "Packaging PDF..."
+# npm run export:cn && npm run export:en
+# if [ $? -ne 0 ]; then
+#     log_with_time "PDF packaging failed. Exiting..."
+#     exit 1
+# fi
 
 # 部署完成
 log_with_time "Deployment complete."

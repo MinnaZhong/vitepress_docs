@@ -25,13 +25,8 @@ webhooks.on("push", async (event) => {
         repository,
         head_commit
     } = event.payload;
-    console.log(`Received a push event on ${ref} in ${repository.name}`);
-
     try {
-        // Run the shell command (e.g., autobuild.sh script)
-        run_cmd("sh", ["./autobuild.sh"], function (text) {
-            console.log(text);
-        });
+        auto_build()
     } catch (error) {
         console.error("Error while executing autobuild.sh:", error);
     }
@@ -70,3 +65,11 @@ function run_cmd(cmd, args, callback) {
         console.error("Error running command:", err);
     });
 }
+
+function auto_build() {
+    run_cmd("sh", ["./autobuild.sh"], function (text) {
+        console.log(text);
+    });
+}
+
+auto_build()

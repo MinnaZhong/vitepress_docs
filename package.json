@@ -3,11 +3,8 @@
     "docs:dev": "vitepress dev --host",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview --port 3040",
-    "webhooks": "cd ./server/webhooks && npm install && node ./index.js",
-    "webhooks:install": "cd './server/webhooks' && npm install",
-    "export:api": "cd ./server/export_pdf && npm install && node ./index.js",
-    "export:api:install": "cd './server/export_pdf' && npm install",
-    "export:install": "cd './server/vitepress-export-pdf' && npm install",
+    "webhooks": "cd ./server/webhooks && pnpm install && node ./index.js",
+    "export:api": "cd ./server/export_pdf && pnpm install && node ./index.js",
     "export:cn": "press-export-pdf export / -c ./.vitepress/vitepress-pdf.config_cn.ts",
     "export:en": "press-export-pdf export / -c ./.vitepress/vitepress-pdf.config_en.ts"
   },
