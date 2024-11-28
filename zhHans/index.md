@@ -2,12 +2,12 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
 hero:
-  name: "UFactory Docs v1.0.125"
-  tagline: "What can we help you find???"
+  name: "UFactory 文档 V1.0.8"
+  tagline: "我们可以帮您找到什么？"
   actions:
     - theme: brand
-      text: Start Ready
-      link: /xarm_python_sdk/continuous_inear_motion
+      text: 开始阅读
+      link: /xarm_python_sdk/installation
     - theme: alt
       text: Github
       link: https://github.com/vuejs/vitepress

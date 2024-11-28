@@ -3,11 +3,11 @@
 layout: home
 hero:
   name: "UFactory Docs v1.0.2"
-  tagline: "What can we help you find???"
+  tagline: "What can we help you find"
   actions:
     - theme: brand
-      text: Start Ready
-      link: /xarm_python_sdk/continuous_inear_motion
+      text: StartReady
+      link: /xarm_python_sdk/installation
     - theme: alt
       text: Github
       link: https://github.com/vuejs/vitepress
