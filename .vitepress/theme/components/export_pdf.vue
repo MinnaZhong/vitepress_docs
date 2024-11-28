@@ -6,7 +6,10 @@ import { LoaderCircle, FileDown } from "lucide-vue-next";
 import {Modal, Button} from "ant-design-vue"
 
 
-const API_DRAMA_URL = "http://docs.api.ufactory.cc";
+// const API_DRAMA_URL = "http://docs.api.ufactory.cc";
+const API_DRAMA_URL = "http://117.72.71.243:3030/";
+
+
 
 // 控制按钮显示
 const showButton = ref(false);
