@@ -12,6 +12,7 @@ LOG_FILE="/var/log/uf_docs.log"
 # PM2 管理的应用名称
 APP_NAME="UFactory-Docs"
 
+echo "[===================== Auto Update ===========================]"
 # 开始部署流程
 echo "Start deployment..." | tee -a $LOG_FILE
 
