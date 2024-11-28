@@ -20,7 +20,7 @@ log_with_time() {
     echo "${timestamp} - ${message}" | tee -a $LOG_FILE
 }
 
-log_with_time "[===================== Auto Update ===========================]"
+log_with_time "[===================== Auto Update v1.0.0===========================]"
 
 # 开始部署流程
 log_with_time "Start deployment..."
@@ -62,6 +62,15 @@ log_with_time "Starting preview..."
 pm2 start npm --name $APP_NAME -- run docs:preview
 if [ $? -ne 0 ]; then
     log_with_time "Preview start failed. Exiting..."
+    exit 1
+fi
+
+
+# 打包PDF文件
+log_with_time "Packaging PDF..."
+npm run export:cn && npm run export:en
+if [ $? -ne 0 ]; then
+    log_with_time "PDF packaging failed. Exiting..."
     exit 1
 fi
 
