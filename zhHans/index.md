@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: 开始阅读
-      link: /xarm_python_sdk/installation
+      link: /xarm_python_sdk/continuous_inear_motion
     - theme: alt
       text: Github
       link: https://github.com/vuejs/vitepress
