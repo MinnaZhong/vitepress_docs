@@ -25,7 +25,7 @@ log_with_time "[===================== Auto Update ===========================]"
 # 开始部署流程
 log_with_time "Start deployment..."
 
-# 进入项目目录，如果失败则退出脚本
+# 进入项目目录，如果失败则退出脚本!
 cd $WEB_PATH || { log_with_time "Directory $WEB_PATH not found! Exiting..."; exit 1; }
 log_with_time "Current directory: $(pwd)"
 
