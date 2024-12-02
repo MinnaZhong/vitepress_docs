@@ -1,5 +1,5 @@
 import type { DefaultTheme } from 'vitepress/theme'
-import { defineUserConfig } from 'vitepress-export-pdf'
+import { defineUserConfig } from 'gm-export-pdfs'
 
 import userConfig from './config.mts'
 
