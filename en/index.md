@@ -2,7 +2,7 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
 hero:
-  name: "UFactory Docs v1.0.2"
+  name: "UFactory Docs v1.0.3"
   tagline: "What can we help you find"
   actions:
     - theme: brand
