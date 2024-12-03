@@ -7,7 +7,7 @@ import {Modal, Button} from "ant-design-vue"
 
 
 // const API_DRAMA_URL = "http://docs.api.ufactory.cc";
-const API_DRAMA_URL = "http://117.72.71.243:3030/";
+const API_DRAMA_URL = "http://docs.test.ufactory.cc/pdf";
 
 
 // 控制按钮显示
@@ -55,30 +55,25 @@ onMounted(() => {
  
 });
 
+
+function getPdfName(str) {
+  const regex = /\/([^/]+)\.md$/;
+    const match = str.match(regex);
+    if (match && match.length > 1) {
+        if (str.startsWith('zhHans/')) {
+          return match[1]+"_zh.pdf"
+        }
+        return match[1]+"_en.pdf"
+    }
+    return "unknown.pdf"
+}
 // 下载 PDF 的函数
 const downloadPDF = async () => {
   
   dwLoading.value = true
   try {
-    let name = route.data.title.trim().split(" ").join("_")
-
-     // 设置请求参数
-    const payload = {
-      url: window.location.origin+window.location.pathname+"?export=1",
-      name: `${name}.pdf`,
-    };
-    const response = await fetch(API_DRAMA_URL+'/generate-pdf', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
-
-    if (!response.ok) {
-        throw new Error('无法生成 PDF');
-    }
-
+    const file_name = getPdfName(route.data.filePath)
+    const response = await fetch(API_DRAMA_URL+`/`+file_name)
     // 获取 PDF 数据为 Blob
     const blob = await response.blob();
 
@@ -86,7 +81,7 @@ const downloadPDF = async () => {
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = payload.name
+    a.download = file_name
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -103,7 +98,7 @@ const downloadPDF = async () => {
 const downloadAllPDF = async () => {
   allDwLoading.value = true
   try {
-    const file_name = `ufactory_docs_${isEnglish?"en":"cn"}.pdf`
+    const file_name = `ufactory_docs_${isEnglish?"en":"zh"}.pdf`
     const response = await fetch(API_DRAMA_URL+`/`+file_name)
     const blob = await response.blob()
     const url = window.URL.createObjectURL(blob)
