@@ -8,32 +8,12 @@ const editLinkPattern = `/:path`;
 const vitePressConfig: UserConfig = defineConfig({
   title: "UFactory Docs",
   description: "A VitePress Site",
-
   lastUpdated: true,
   // outDir: '../docs-dist',
   // cleanUrls: true,
   rewrites: {
     'en/:rest*': ':rest*'
   },
-  themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    // nav: [
-    //   { text: 'Home', link: '/' },
-    //   { text: 'Examples', link: '/markdown-examples' }
-    // ],
-    // sidebar: generateSidebar({
-    //   documentRootPath: '/',
-    // }),
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ],
-    search: {
-      provider: 'local'
-    },
-    editLink: {
-      pattern: editLinkPattern
-    },
-  }
 })
 
 const defaultLocale: string = 'en';
@@ -48,7 +28,8 @@ const commonSidebarConfig: VitePressSidebarOptions = {
   useTitleFromFrontmatter: true,
   useFolderTitleFromIndexFile: true,
   frontmatterOrderDefaultValue: 9, // For 'CHANGELOG.md'
-  sortMenusByFrontmatterOrder: true
+  // sortMenusByFrontmatterOrder: true,
+  sortMenusByName: true,
 };
 
 const vitePressSidebarConfig = [
@@ -85,7 +66,11 @@ const vitePressI18nConfig: any = {
           link: 'https://www.ufactory.cc/contact-us/'
         },
 
-      ]
+      ],
+      outline: {
+        label: 'On this Page',
+        level: [2, 4]
+      },
     },
     zhHans: {
       nav: [
@@ -97,8 +82,21 @@ const vitePressI18nConfig: any = {
           text: '联系我们',
           link: 'https://cn.ufactory.cc/contact-us/'
         },
-      ]
-    }
+      ],
+      outline: {
+        label: 'On this Page',
+        level: [2, 4]
+      },
+    },
+    // socialLinks: [
+    //   { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+    // ],
+    // search: {
+    //   provider: 'local'
+    // },
+    // editLink: {
+    //   pattern: editLinkPattern
+    // },
   }
 };
 
