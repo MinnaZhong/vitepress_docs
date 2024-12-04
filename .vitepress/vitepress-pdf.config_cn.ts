@@ -53,13 +53,13 @@ const configs = defineUserConfig({
     headerTemplate,
     footerTemplate,
     margin: {
-      bottom: 60,
+      bottom: 30,
       left: 25,
       right: 25,
-      top: 60,
+      top: 30,
     },
   },
-  urlOrigin: 'https://testdocs.ufactory.cc/',
+  urlOrigin: 'https://docs.test.ufactory.cc/',
   sorter: (pageA, pageB) => {
     const aIndex = routeOrder.findIndex(route => route === pageA.path)
     const bIndex = routeOrder.findIndex(route => route === pageB.path)
