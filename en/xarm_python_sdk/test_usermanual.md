@@ -1,11 +1,11 @@
-# 1. 前言
+## 1. 前言
 UFACTORY Studio是一个控制机械臂的图形化用户应用程序，可以用来设置机械臂参数，实时控制机械臂姿态，可以通过拖拽Blockly命令来创建机械臂的运动程序。UFACTORY Studio提供了完善的机器人系统状态信息、故障提示与故障处理方案，即使您通过Python SDK/C++/ROS或机械臂自定义TCP协议来创建您的程序，我们仍然建议您在调试、编程阶段，始终保持UFACTORY Studio处于运行状态。    
 
 UFACTORY Studio可通过浏览器访问，现已兼容的浏览器有：Google Chrome、Firefox、Safari、Microsoft Edge(Chromium内核)。   
 
 适用产品：**xArm5、xArm6、xArm7、UFACTORY 850、Lite6。**
-# 2. 连接机械臂
-## 2.1 硬件连接
+## 2. 连接机械臂
+### 2.1 硬件连接
 推荐控制器与PC直连，以xArm为例如下图： 
 ![](./assets/product_info_cn.png)
 
@@ -13,7 +13,7 @@ UFACTORY Studio可通过浏览器访问，现已兼容的浏览器有：Google C
 
 其他连接方式请参考硬件连接。
 
-## 2.2 软件连接
+### 2.2 软件连接
 机械臂默认IP为192.168.1.xxx，**请确保电脑IP和机械臂IP处于同一网段，但不能完全一致。**即PC端的IPV4网段必须在192.168.1.1-192.168.1.255之间。
 如何设置电脑IP请参考[快速安装手册-软件连接](https://www.cn.ufactory.cc/_files/ugd/896670_96742aa662884c389854f66dad3c4cbe.pdf)。   
 
