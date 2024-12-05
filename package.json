@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "docs:dev": "vitepress dev --host",
+    "docs:dev": "vitepress dev --host --port 3040",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview --port 3040",
     "webhooks": "cd ./server/webhooks && pnpm install && node ./index.js",
