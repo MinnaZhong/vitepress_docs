@@ -10,6 +10,7 @@
     "export:en": "press-export-pdf export / -c ./.vitepress/vitepress-pdf.config_en.ts"
   },
   "devDependencies": {
+    "markdown-it-mathjax3": "^4.3.2",
     "typescript": "^5.7.2",
     "vitepress": "^1.5.0",
     "vitepress-i18n": "^1.3.0",

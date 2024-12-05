@@ -11,6 +11,9 @@ const vitePressConfig: UserConfig = defineConfig({
   lastUpdated: true,
   // outDir: '../docs-dist',
   // cleanUrls: true,
+  markdown: {
+    math: true
+  },
   rewrites: {
     'en/:rest*': ':rest*'
   },
@@ -27,9 +30,9 @@ const commonSidebarConfig: VitePressSidebarOptions = {
   useTitleFromFileHeading: true,
   useTitleFromFrontmatter: true,
   useFolderTitleFromIndexFile: true,
-  frontmatterOrderDefaultValue: 9, // For 'CHANGELOG.md'
+  // frontmatterOrderDefaultValue: 9, // For 'CHANGELOG.md'
   // sortMenusByFrontmatterOrder: true,
-  sortMenusByName: true,
+  sortMenusOrderNumericallyFromLink: true,
 };
 
 const vitePressSidebarConfig = [
@@ -84,7 +87,7 @@ const vitePressI18nConfig: any = {
         },
       ],
       outline: {
-        label: 'On this Page',
+        label: '页面导航',
         level: [2, 4]
       },
     },
