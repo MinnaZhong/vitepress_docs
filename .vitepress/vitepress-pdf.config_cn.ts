@@ -35,7 +35,7 @@ const headerTemplate = `<div style="margin-top: -0.4cm; height: 70%; width: 100%
 </div>`
 
 const footerTemplate = `<div style="margin-bottom: -0.4cm; height: 70%; width: 100%; display: flex; justify-content: flex-start; align-items: center; color: lightgray; border-top: solid lightgray 1px; font-size: 10px;">
-  <span style="margin-left: 15px;" class="url"></span>
+  <span style="margin-left: 15px; opacity:0;" class="url"></span>
 </div>`
 
 
@@ -49,25 +49,26 @@ const configs = defineUserConfig({
   pdfOptions: {
     format: 'A4',
     printBackground: true,
-    displayHeaderFooter: false,
     headerTemplate,
     footerTemplate,
     margin: {
-      bottom: 30,
+      bottom: 50,
       left: 25,
       right: 25,
-      top: 30,
+      top: 50,
     },
   },
-  urlOrigin: 'https://docs.test.ufactory.cc/',
+  // urlOrigin: 'https://docs.test.ufactory.cc/',
   sorter: (pageA, pageB) => {
-    const aIndex = routeOrder.findIndex(route => route === pageA.path)
-    const bIndex = routeOrder.findIndex(route => route === pageB.path)
-    return aIndex - bIndex
+    // 提取pageA路径中的数字部分，使用正则表达式匹配数字
+    const aNumberMatch = pageA.path.match(/(\d+)/);
+    const aNumber = aNumberMatch ? parseInt(aNumberMatch[1], 10) : 0;
+    // 提取pageB路径中的数字部分
+    const bNumberMatch = pageB.path.match(/(\d+)/);
+    const bNumber = bNumberMatch ? parseInt(bNumberMatch[1], 10) : 0;
+    return aNumber - bNumber;
   },
 })
 
-
-// console.log('configs', configs);
 
 export default configs

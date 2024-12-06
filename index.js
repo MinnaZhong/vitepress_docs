@@ -1,13 +1,41 @@
-fetch("http://docs.hooks.ufactory.cc/webhooks", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        name: "docs"
-    })
-}).then(res => {
-    console.log("res==>", res)
-}).catch(err => {
-    console.log(err)
-})
+import puppeteer from "puppeteer";
+
+function sleep(ms) {
+    return new Promise(resolve => {
+        setTimeout(resolve, ms);
+    });
+}
+
+(async () => {
+    const browser = await puppeteer.launch({
+        headless: true,
+        devtools: true,
+    });
+
+    const page = await browser.newPage();
+
+    await page.goto("http://192.168.1.113:3040/xarm_python_sdk/continuous_inear_motion.html", {
+        // waitUntil: "networkidle2"
+    });
+
+
+    const height = await page.evaluate(() => document.documentElement);
+
+    console.log('height==>', page.browserContext().documentElement);
+
+
+
+    await page.pdf({
+        path: "hni.pdf",
+        format: 'A4',
+        printBackground: true, // 是否打印背景
+        margin: {
+            bottom: 50,
+            left: 25,
+            right: 25,
+            top: 50,
+        },
+    });
+
+    await browser.close();
+})();
