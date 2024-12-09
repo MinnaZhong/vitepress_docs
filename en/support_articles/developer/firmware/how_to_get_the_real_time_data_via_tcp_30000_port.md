@@ -6,7 +6,7 @@ Take port 30000 as an example.
 
 We provide TCP port 30000 to get the robot data in real-time, **the frequency is 250HZ**(200HZ with FT sensor). The following briefly describes how to use data reporting with the 30000 port.
 
-[Data Description of TCP port](data-description-of-tcp-port.md)
+[Data Description of TCP port](data_description_of_tcp_port.md)
 
 ## 2. Python Example
 ```python
