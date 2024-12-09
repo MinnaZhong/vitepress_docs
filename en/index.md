@@ -14,11 +14,29 @@ hero:
 
 
 features:
-  - title: Feature Test
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: User Manual
+    icon: 
+      scr: en/xarm_python_sdk/assets/python.svg
+      width: 400
+      height: 400
+      alt: User Manual
+    link: user_manual/ufactoryStudio/1.Preface.html
+    details: UFACTORY Studio user manual
+  - title: Python SDK
+    icon: 
+      scr: en/xarm_python_sdk/assets/python.svg
+      width: 400
+      height: 400
+      alt: Python SDK
+    link: /xarm_python_sdk/installation.html
+    details: Python developer packages for robotic arm from UFACTORY
+  - title: Support Article
+    icon: 
+      scr: en/support_articles/software/assets/support_article.svg
+      width: 400
+      height: 400
+      alt: Support Article
+    link: /support_articles/hardware/How_to_reset_the_zero_position_of_xArm_Gripper.html
+    details: Learn how to solve common issues.
 ---
 
