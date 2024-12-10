@@ -5,6 +5,7 @@ import DefaultTheme from 'vitepress/theme'
 import ExportPDF from './components/export_pdf.vue';
 import './style.css'
 import './print.css'
+import './custom.css'
 
 export default {
   extends: DefaultTheme,
@@ -26,9 +27,6 @@ export default {
     // ...
   },
   setup() {
-
-    console.log('setup');
-
     return {
       foo: 'bar',
     }

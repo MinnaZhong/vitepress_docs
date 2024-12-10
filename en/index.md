@@ -16,7 +16,7 @@ hero:
 features:
   - title: User Manual
     icon: 
-      src: ./assets/python.svg
+      src: /assets/python.svg
       width: 400
       height: 400
       alt: User Manual
@@ -24,7 +24,7 @@ features:
     details: UFACTORY Studio user manual
   - title: Python SDK
     icon: 
-      src: en/xarm_python_sdk/assets/python.svg
+      src: /assets/python.svg
       width: 400
       height: 400
       alt: Python SDK
@@ -32,7 +32,7 @@ features:
     details: Python developer packages for robotic arm from UFACTORY
   - title: Support Article
     icon: 
-      src: en/support_articles/software/assets/support_article.svg
+      src: /assets/support_article.svg
       width: 400
       height: 400
       alt: Support Article
