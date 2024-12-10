@@ -14,11 +14,29 @@ hero:
 
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 用户手册
+    icon: 
+      src: /assets/python.svg
+      width: 400
+      height: 400
+      alt: 用户手册
+    link: zhHans/user_manual/ufactoryStudio/1.preface.html
+    details: UFACTORY Studio user manual
+  - title: Python SDK
+    icon: 
+      src: /assets/python.svg
+      width: 400
+      height: 400
+      alt: Python SDK
+    link: zhHans/xarm_python_sdk/installation.html
+    details: Python接口开发
+  - title: Support Article
+    icon: 
+      src: /assets/support_article.svg
+      width: 400
+      height: 400
+      alt: Support Article
+    link: zhHans/support_articles/hardware/How_to_reset_the_zero_position_of_xArm_Gripper.html
+    details: 技术支持文档.
 ---
 

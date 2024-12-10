@@ -20,7 +20,7 @@ features:
       width: 400
       height: 400
       alt: User Manual
-    link: user_manual/ufactoryStudio/1.Preface.html
+    link: user_manual/ufactoryStudio/1.preface.html
     details: UFACTORY Studio user manual
   - title: Python SDK
     icon: 
@@ -38,5 +38,13 @@ features:
       alt: Support Article
     link: /support_articles/hardware/How_to_reset_the_zero_position_of_xArm_Gripper.html
     details: Learn how to solve common issues.
+  - title: Release Note
+    icon: 
+      src: /assets/release_note.svg
+      width: 400
+      height: 400
+      alt: /release_note/release_note.html
+    link: 
+    details: Firmware and UFACTORY Studio update summary.
 ---
 
