@@ -25,7 +25,7 @@ const supportLocales: string[] = [defaultLocale, 'zhHans'];
 const commonSidebarConfig: VitePressSidebarOptions = {
   debugPrint: false,
   manualSortFileNameByPriority: ['introduction.md', 'guide', 'advanced-usage'],
-  collapsed: false,
+  collapsed: true,
   capitalizeFirst: true,
   useTitleFromFileHeading: true,
   useTitleFromFrontmatter: true,
