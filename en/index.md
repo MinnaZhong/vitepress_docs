@@ -20,7 +20,7 @@ features:
       width: 400
       height: 400
       alt: User Manual
-    link: user_manual/ufactoryStudio/1.Preface.html
+    link: user_manual/ufactoryStudio/1.preface.html
     details: UFACTORY Studio user manual
   - title: Python SDK
     icon: 
