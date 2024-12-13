@@ -16,7 +16,7 @@ hero:
 features:
   - title: User Manual
     icon: 
-      src: /assets/python.svg
+      src: /assets/support_article.svg
       width: 400
       height: 400
       alt: User Manual
