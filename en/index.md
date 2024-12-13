@@ -16,7 +16,7 @@ hero:
 features:
   - title: User Manual
     icon: 
-      src: /assets/python.svg
+      src: /assets/support_article.svg
       width: 400
       height: 400
       alt: User Manual
@@ -43,8 +43,8 @@ features:
       src: /assets/release_note.svg
       width: 400
       height: 400
-      alt: /release_note/release_note.html
-    link: 
+      alt: Release Note
+    link: /release_note/release_note.html
     details: Firmware and UFACTORY Studio update summary.
 ---
 

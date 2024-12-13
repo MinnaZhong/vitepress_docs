@@ -16,7 +16,7 @@ hero:
 features:
   - title: 用户手册
     icon: 
-      src: /assets/python.svg
+      src: support_article.svg
       width: 400
       height: 400
       alt: 用户手册
