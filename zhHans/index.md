@@ -20,7 +20,7 @@ features:
       width: 400
       height: 400
       alt: 用户手册
-    link: zhHans/user_manual/ufactoryStudio/1.preface.html
+    link: user_manual/ufactoryStudio/1.preface.html
     details: UFACTORY Studio user manual
   - title: Python SDK
     icon: 
@@ -28,7 +28,7 @@ features:
       width: 400
       height: 400
       alt: Python SDK
-    link: zhHans/xarm_python_sdk/installation.html
+    link: xarm_python_sdk/installation.html
     details: Python接口开发
   - title: Support Article
     icon: 
@@ -36,7 +36,7 @@ features:
       width: 400
       height: 400
       alt: Support Article
-    link: zhHans/support_articles/hardware/How_to_reset_the_zero_position_of_xArm_Gripper.html
+    link: support_articles/hardware/How_to_reset_the_zero_position_of_xArm_Gripper.html
     details: 技术支持文档.
 ---
 
